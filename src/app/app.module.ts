@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+
+import { environment } from 'environments/environment';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -8,9 +11,15 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment['apiKeyMaps'],
+      libraries: ['visualization'],
+    }),
   ],
-  providers: [],
+  providers: [
+    GoogleMapsAPIWrapper,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
